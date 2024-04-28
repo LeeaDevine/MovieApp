@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="auth-container">
+  <mat-card>
+    <h1>Login</h1>
+    <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Enter Email Address</mat-label>
+        <!-- Input Field -->
+        <input
+          matInput
+          type="email"
+          placeholder="Email Address"
+          autocomplete="off"
+          formControlName="email"
+        />
+        <!-- Error message -->
+        <mat-error *ngIf="loginForm.get('email')?.errors">
+          {{ getEmailErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter Password</mat-label>
+        <!-- Input Field -->
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          autocomplete="off"
+          formControlName="password"
+        />
+        <!-- Error message -->
+        <mat-error> Enter your password! </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid">
+        Login
+      </button>
+      <p>Create an Account: <a routerLink="../register">Register</a></p>
+      <!-- error message here -->
+      <mat-error *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </mat-error>
+    </form>
+  </mat-card>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
+import { ErrorHandlerService } from '../../../shared/service/error-handler.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +9,12 @@ import { ErrorHandlerService } from '../../../shared/services/error-handler.serv
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  // Globals
   errorMessage!: string;
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
     private errorHandler: ErrorHandlerService
   ) {
     this.errorHandler.currentErrorMessage.subscribe((message) => {
@@ -19,20 +22,32 @@ export class RegisterComponent {
     });
   }
 
+  loading = false;
+
+  // Register Form Builder
   registerForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  /**
+   * @description Submit Register Form
+   */
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm);
+      this.loading = true;
+      const { email, password } = this.registerForm.value;
+      this.authService.register(email!, password!);
+      this.loading = false;
     } else {
       this.errorHandler.changeErrorMessage('Form is not valid');
     }
   }
 
-  // Validation Check - Email
+  /**
+   * @description Get Email Error Messages
+   * @returns error message: string
+   */
   getEmailErrorMessage() {
     if (this.registerForm.controls.email.hasError('required')) {
       return 'You must enter a value';
@@ -42,7 +57,10 @@ export class RegisterComponent {
       : 'An unknown error has occured';
   }
 
-  // Validation Check - Password
+  /**
+   * @description Get Password Error Messages
+   * @returns error message: string
+   */
   getPasswordErrorMessage() {
     if (this.registerForm.controls.password.hasError('required')) {
       return 'You must enter a value';

@@ -40,6 +40,10 @@
         Register
       </button>
       <p>Already have an account? <a routerLink="../login">Login Here</a></p>
+      <!-- error message here -->
+      <mat-error *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </mat-error>
     </form>
   </mat-card>
 </div>

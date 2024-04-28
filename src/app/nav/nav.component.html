@@ -12,10 +12,18 @@
       <a class="nav-link" mat-list-item routerLink=""
         ><mat-icon>search</mat-icon> Search</a
       >
-      <a class="nav-link" mat-list-item routerLink="login"
+      <a
+        class="nav-link"
+        mat-list-item
+        routerLink="login"
+        *ngIf="!authenticated"
         ><mat-icon>login</mat-icon> Login</a
       >
-      <a class="nav-link" mat-list-item routerLink="logout"
+      <a
+        class="nav-link"
+        mat-list-item
+        (click)="onLogout()"
+        *ngIf="authenticated"
         ><mat-icon>logout</mat-icon> Logout</a
       >
     </mat-nav-list>
