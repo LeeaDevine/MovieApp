@@ -1,33 +1,21 @@
 <!-- Search Form  -->
-<form action="">
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <!-- Material | FormField -->
-  <mat-form-field>
+  <mat-form-field appearance="fill">
     <mat-label>Search for a Movie</mat-label>
-    <input type="text" matInput placeholder="Movie Title" autocomplete="off" />
+    <input matInput type="text" placeholder="Movie Title" />
+    <mat-error *ngIf="searchForm.hasError('required')">
+      Movie title is required.
+    </mat-error>
   </mat-form-field>
 
   <!-- Search Button -->
-  <button mat-raised-button color="primary">Search</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="searchForm.invalid"
+  >
+    Search
+  </button>
 </form>
-
-<!-- Testing -->
-
-<!-- <div *ngIf="movies.length > 0; else noResults"> -->
-<div *ngIf="movies.length > 0; else noResults">
-  <!-- Loop through movies -->
-  <div *ngFor="let movie of movies">
-    <h3>{{ movie.title }}</h3>
-
-    <img [src]="getPosterUrl(movie.poster_path)" alt="{{ movie.title }}" />
-
-    <p>{{ movie.overview }}</p>
-
-    <ul>
-      <li>Release Date: {{ movie.release_date }}</li>
-      <li>Release Date: {{ movie.vote_average }}</li>
-    </ul>
-
-    <!-- Others? -->
-  </div>
-</div>
-<ng-template #noResults>No Movies Found.</ng-template>

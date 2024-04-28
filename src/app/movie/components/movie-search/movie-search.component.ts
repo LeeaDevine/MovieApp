@@ -1,42 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, Validators } from '@angular/forms';
+// import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-movie-search',
   templateUrl: './movie-search.component.html',
   styleUrl: './movie-search.component.scss',
 })
-export class MovieSearchComponent implements OnInit {
-  // Testing
+export class MovieSearchComponent {
+  constructor(private movieService: MovieService) {}
+
+  searchForm: FormGroup = new FormGroup('', [Validators.required]);
   movies: any[] = [];
 
-  movie: any;
+  //Submitted Form
+  onSubmit(): void {
+    console.log(this.searchForm);
 
-  constructor(
-    private movieService: MovieService,
-    private route: ActivatedRoute
-  ) {}
-
-  // On initialise
-  ngOnInit(): void {
-    this.searchMovies('Rocky');
-  }
-
-  // Method - Search Movies
-  searchMovies(query: string): void {
-    this.movieService.searchMovies(query).subscribe({
-      next: (response) => {
-        this.movies = response.results;
-        console.log(response.results);
-      },
-      error: (e) => console.error(e),
-      complete: () => console.info('Movies search complete'),
-    });
-  }
-
-  getPosterUrl(path: string): string {
-    const imageUrl = `https://image.tmdb.org/t/p/w500${path}`;
-    return imageUrl;
+    // this.searchMovies(value);
   }
 }

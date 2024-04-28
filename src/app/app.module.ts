@@ -19,6 +19,12 @@ import { MatInputModule } from '@angular/material/input';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,10 +35,13 @@ import { HttpClientModule } from '@angular/common/http';
     MovieItemComponent,
     NavComponent,
     NotFoundComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
@@ -42,6 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
