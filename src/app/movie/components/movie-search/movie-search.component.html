@@ -1,1 +1,33 @@
-<p>movie-search works!</p>
+<!-- Search Form  -->
+<form action="">
+  <!-- Material | FormField -->
+  <mat-form-field>
+    <mat-label>Search for a Movie</mat-label>
+    <input type="text" matInput placeholder="Movie Title" autocomplete="off" />
+  </mat-form-field>
+
+  <!-- Search Button -->
+  <button mat-raised-button color="primary">Search</button>
+</form>
+
+<!-- Testing -->
+
+<!-- <div *ngIf="movies.length > 0; else noResults"> -->
+<div *ngIf="movies.length > 0; else noResults">
+  <!-- Loop through movies -->
+  <div *ngFor="let movie of movies">
+    <h3>{{ movie.title }}</h3>
+
+    <img [src]="getPosterUrl(movie.poster_path)" alt="{{ movie.title }}" />
+
+    <p>{{ movie.overview }}</p>
+
+    <ul>
+      <li>Release Date: {{ movie.release_date }}</li>
+      <li>Release Date: {{ movie.vote_average }}</li>
+    </ul>
+
+    <!-- Others? -->
+  </div>
+</div>
+<ng-template #noResults>No Movies Found.</ng-template>

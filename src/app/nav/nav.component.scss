@@ -15,3 +15,35 @@
   top: 0;
   z-index: 1;
 }
+
+.app-container {
+  padding: 5rem;
+}
+
+.app-title {
+  font-family: fantasy;
+  font-size: 1.6rem;
+  letter-spacing: 0.2rem;
+}
+
+// Navigation Links
+mat-nav-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  font-weight: 300;
+  padding: 0.3rem;
+  margin-bottom: 0.2rem;
+
+  mat-icon {
+    vertical-align: middle;
+    margin-right: 1rem;
+  }
+
+  &:hover {
+    background-color: #e8e8e8;
+    opacity: 0.8;
+  }
+}
