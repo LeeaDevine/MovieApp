@@ -1,15 +1,24 @@
+<hr class="divider" />
+
 <!-- Trending movies display section -->
 <div class="movies-container">
   <h2>Trending Movies</h2>
   <div class="movies-row">
-    <mat-card *ngFor="let movie of trending" class="movie-card">
-      <img
-        mat-card-image
-        [src]="getPosterImageUrl(movie.poster_path)"
-        alt="{{ movie.title }} Poster"
-      />
-      <mat-card-title>{{ movie.title }}</mat-card-title>
-    </mat-card>
+    <!-- Card Link to Movie[id] Details -->
+    <a
+      *ngFor="let movie of trending"
+      [routerLink]="['/movie-details', movie.id]"
+      class="movie-card-link"
+    >
+      <mat-card class="movie-card">
+        <img
+          mat-card-image
+          [src]="getPosterImageUrl(movie.poster_path)"
+          alt="{{ movie.title }} Poster"
+        />
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+      </mat-card>
+    </a>
   </div>
 </div>
 
@@ -19,13 +28,20 @@
 <div class="movies-container">
   <h2>Upcoming Movies</h2>
   <div class="movies-row">
-    <mat-card *ngFor="let movie of upcoming" class="movie-card">
-      <img
-        mat-card-image
-        [src]="getPosterImageUrl(movie.poster_path)"
-        alt="{{ movie.title }} Poster"
-      />
-      <mat-card-title>{{ movie.title }}</mat-card-title>
-    </mat-card>
+    <!-- Card Link to Movie[id] Details -->
+    <a
+      *ngFor="let movie of upcoming"
+      [routerLink]="['/movie-details', movie.id]"
+      class="movie-card-link"
+    >
+      <mat-card class="movie-card">
+        <img
+          mat-card-image
+          [src]="getPosterImageUrl(movie.poster_path)"
+          alt="{{ movie.title }} Poster"
+        />
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+      </mat-card>
+    </a>
   </div>
 </div>

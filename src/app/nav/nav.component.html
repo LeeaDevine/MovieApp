@@ -15,6 +15,13 @@
       <a
         class="nav-link"
         mat-list-item
+        routerLink="account"
+        *ngIf="authenticated"
+        ><mat-icon>account_circle</mat-icon> Account</a
+      >
+      <a
+        class="nav-link"
+        mat-list-item
         routerLink="login"
         *ngIf="!authenticated"
         ><mat-icon>login</mat-icon> Login</a

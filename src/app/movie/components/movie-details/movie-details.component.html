@@ -1,1 +1,36 @@
-<p>movie-details works!</p>
+<div *ngIf="movie" class="row">
+  <div class="movie-details-image">
+    <img
+      mat-card-image
+      [src]="getPosterImageUrl(movie.poster_path)"
+      alt="{{ movie.title }} Poster"
+    />
+  </div>
+  <div class="movie-details-info">
+    <h2>{{ movie.title }}</h2>
+    <!-- Runtime -->
+    <p class="lesser-info">
+      <span
+        >Original Language:
+        <span class="upper">{{ movie.original_language }}</span></span
+      >
+      -- <span>{{ movie.runtime }} Minutes</span> --
+      <span>{{ movie.status }}</span>
+    </p>
+
+    <!-- List genres -->
+    <ul>
+      <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>
+    </ul>
+
+    <!-- Overview of movie -->
+    <div class="movie-desc">
+      <h4>Movie Description:</h4>
+      <p>{{ movie.overview }}</p>
+    </div>
+
+    <div class="subscription-list">
+      <!-- Place subscription list here -->
+    </div>
+  </div>
+</div>
