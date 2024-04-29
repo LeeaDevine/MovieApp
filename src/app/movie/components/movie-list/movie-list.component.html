@@ -1,1 +1,31 @@
-<p>movie-list works!</p>
+<!-- Trending movies display section -->
+<div class="movies-container">
+  <h2>Trending Movies</h2>
+  <div class="movies-row">
+    <mat-card *ngFor="let movie of trending" class="movie-card">
+      <img
+        mat-card-image
+        [src]="getPosterImageUrl(movie.poster_path)"
+        alt="{{ movie.title }} Poster"
+      />
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+    </mat-card>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- Upcoming movies display section -->
+<div class="movies-container">
+  <h2>Upcoming Movies</h2>
+  <div class="movies-row">
+    <mat-card *ngFor="let movie of upcoming" class="movie-card">
+      <img
+        mat-card-image
+        [src]="getPosterImageUrl(movie.poster_path)"
+        alt="{{ movie.title }} Poster"
+      />
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+    </mat-card>
+  </div>
+</div>

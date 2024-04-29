@@ -3,7 +3,13 @@
   <!-- Material | FormField -->
   <mat-form-field appearance="fill">
     <mat-label>Search for a Movie</mat-label>
-    <input matInput type="text" placeholder="Movie Title" />
+    <!-- Bind input to 'title' form control -->
+    <input
+      matInput
+      type="text"
+      formControlName="title"
+      placeholder="Movie Title"
+    />
     <mat-error *ngIf="searchForm.hasError('required')">
       Movie title is required.
     </mat-error>
@@ -19,3 +25,7 @@
     Search
   </button>
 </form>
+
+<!-- movie-list component -->
+<!-- List the trending | upcoming movies -->
+<app-movie-list></app-movie-list>

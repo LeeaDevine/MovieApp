@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -9,15 +9,32 @@ import { FormGroup, Validators } from '@angular/forms';
   styleUrl: './movie-search.component.scss',
 })
 export class MovieSearchComponent {
-  constructor(private movieService: MovieService) {}
+  searchForm: FormGroup;
 
-  searchForm: FormGroup = new FormGroup('', [Validators.required]);
-  movies: any[] = [];
+  constructor(
+    private formBuilder: FormBuilder,
+    private movieService: MovieService
+  ) {
+    this.searchForm = this.formBuilder.group({
+      title: ['', Validators.required],
+    });
+  }
 
-  //Submitted Form
-  onSubmit(): void {
-    console.log(this.searchForm);
-
-    // this.searchMovies(value);
+  onSubmit() {
+    // Extract the movie title from the form control
+    const movieTitle = this.searchForm.get('title')?.value;
+    if (movieTitle) {
+      // Use the movie service to perform the search
+      this.movieService.searchMovies(movieTitle).subscribe({
+        next: (results) => {
+          // TODO: Handle the movie search results
+          console.log(results);
+        },
+        error: (error) => {
+          // TODO: Handle any errors that occur during the search
+          console.error(error);
+        },
+      });
+    }
   }
 }

@@ -1,0 +1,30 @@
+.movies-container {
+  .movies-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    .movie-card {
+      margin-right: 16px;
+      margin-bottom: 16px;
+      padding: 1rem;
+      width: 250px; // Adjust width as needed
+      flex: 0 0 auto; // Prevent cards from stretching
+      filter: drop-shadow(2px 2px 2px #673ab7);
+
+      mat-card-image {
+        height: 300px; // Adjust height as needed
+        object-fit: cover;
+      }
+
+      mat-card-title {
+        font-size: 1rem; // Adjust font size as needed
+      }
+    }
+  }
+}
+
+.divider {
+  margin: 4rem 0;
+  opacity: 0.5;
+}
