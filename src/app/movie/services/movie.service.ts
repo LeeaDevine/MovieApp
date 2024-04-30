@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Movie } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,19 +25,23 @@ export class MovieService {
   // Get trending movies
   getTrendingMovies(): Observable<any> {
     const url = `${this.apiURL}/trending/movie/day?api_key=${this.apiKey}`;
-    return this.http.get(url);
+    return this.http
+      .get<{ results: Movie[] }>(url)
+      .pipe(map((response) => response.results));
   }
 
   // Get upcoming movies
   getUpcomingMovies(): Observable<any> {
     const url = `${this.apiURL}/movie/upcoming?api_key=${this.apiKey}&region=GB`;
-    return this.http.get(url);
+    return this.http
+      .get<{ results: Movie[] }>(url)
+      .pipe(map((response) => response.results));
   }
 
   // Get a specific movie by ID
   getMovieDetails(id: number): Observable<any> {
     const url = `${this.apiURL}/movie/${id}?api_key=${this.apiKey}`;
-    return this.http.get(url);
+    return this.http.get<Movie>(url);
   }
 
   //Get Poster Image

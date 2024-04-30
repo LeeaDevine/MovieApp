@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-movie-list',
@@ -7,8 +8,8 @@ import { MovieService } from '../../services/movie.service';
   styleUrl: './movie-list.component.scss',
 })
 export class MovieListComponent {
-  trending: any[] = [];
-  upcoming: any[] = [];
+  trending: Movie[] = [];
+  upcoming: Movie[] = [];
 
   constructor(private movieService: MovieService) {}
 
@@ -19,8 +20,10 @@ export class MovieListComponent {
 
   loadTrendingMovies(): void {
     this.movieService.getTrendingMovies().subscribe({
-      next: (response) => {
-        this.trending = response.results;
+      next: (movies) => {
+        console.log(movies);
+
+        this.trending = movies;
       },
       error: (error) => {
         console.error('Error fetching trending movies:', error);
@@ -30,8 +33,8 @@ export class MovieListComponent {
 
   loadUpcomingMovies(): void {
     this.movieService.getUpcomingMovies().subscribe({
-      next: (response) => {
-        this.upcoming = response.results;
+      next: (movies) => {
+        this.upcoming = movies;
       },
       error: (error) => {
         console.error('Error fetching trending movies:', error);

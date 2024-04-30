@@ -18,6 +18,8 @@
       <span>{{ movie.status }}</span>
     </p>
 
+    <app-star-rating [rating]="movie.vote_average"></app-star-rating>
+
     <!-- List genres -->
     <ul>
       <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>

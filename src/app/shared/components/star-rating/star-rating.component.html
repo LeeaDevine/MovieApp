@@ -1,0 +1,12 @@
+<div class="star-rating">
+  <!-- Full stars -->
+  <mat-icon *ngFor="let _ of [].constructor(fullStars)" class="star full"
+    >star</mat-icon
+  >
+  <!-- Half star -->
+  <mat-icon *ngIf="halfStar" class="star half">star_half</mat-icon>
+  <!-- Empty stars -->
+  <mat-icon *ngFor="let _ of [].constructor(emptyStars)" class="star empty"
+    >star_border</mat-icon
+  >
+</div>

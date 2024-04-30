@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { MovieSearchComponent } from './movie/components/movie-search/movie-search.component';
 import { MovieListComponent } from './movie/components/movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie/components/movie-details/movie-details.component';
-import { MovieItemComponent } from './movie/components/movie-item/movie-item.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavComponent } from './nav/nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,6 +25,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 import { AccountComponent } from './account/components/account/account.component';
+import { StarRatingComponent } from './shared/components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +33,12 @@ import { AccountComponent } from './account/components/account/account.component
     MovieSearchComponent,
     MovieListComponent,
     MovieDetailsComponent,
-    MovieItemComponent,
     NavComponent,
     NotFoundComponent,
     LoginComponent,
     RegisterComponent,
     AccountComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,

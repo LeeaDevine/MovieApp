@@ -17,6 +17,7 @@
           alt="{{ movie.title }} Poster"
         />
         <mat-card-title>{{ movie.title }}</mat-card-title>
+        <app-star-rating [rating]="movie.vote_average"></app-star-rating>
       </mat-card>
     </a>
   </div>
@@ -41,6 +42,7 @@
           alt="{{ movie.title }} Poster"
         />
         <mat-card-title>{{ movie.title }}</mat-card-title>
+        <app-star-rating [rating]="movie.vote_average"></app-star-rating>
       </mat-card>
     </a>
   </div>

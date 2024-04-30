@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-movie-details',
@@ -8,7 +9,7 @@ import { MovieService } from '../../services/movie.service';
   styleUrl: './movie-details.component.scss',
 })
 export class MovieDetailsComponent implements OnInit {
-  movie: any; //Interface could be used here. [testing...]
+  movie: Movie | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +34,7 @@ export class MovieDetailsComponent implements OnInit {
    */
   loadMovieDetails(id: number): void {
     this.movieService.getMovieDetails(id).subscribe({
-      next: (response) => {
+      next: (response: Movie) => {
         console.log(response);
 
         this.movie = response;
