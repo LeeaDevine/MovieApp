@@ -7,6 +7,7 @@
   .movie-details-image img {
     max-width: 350px;
     height: auto;
+    border-radius: 5px;
   }
 
   .movie-details-info {
@@ -16,7 +17,7 @@
       margin-bottom: 0.5rem;
     }
 
-    ul {
+    .genre-list {
       display: flex;
       margin-top: 2rem;
 

@@ -41,8 +41,4 @@ export class MovieListComponent {
       },
     });
   }
-
-  getPosterImageUrl(posterPath: string): string {
-    return this.movieService.getPosterImageUrl(posterPath);
-  }
 }

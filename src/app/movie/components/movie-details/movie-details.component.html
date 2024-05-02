@@ -1,4 +1,5 @@
 <div *ngIf="movie" class="row">
+  <!-- Poster -->
   <div class="movie-details-image">
     <img
       mat-card-image
@@ -6,9 +7,19 @@
       alt="{{ movie.title }} Poster"
     />
   </div>
+  <!-- Movie Information -->
   <div class="movie-details-info">
     <h2>{{ movie.title }}</h2>
-    <!-- Runtime -->
+
+    <!-- Movie Release Date -->
+    <p>Release Date: {{ movie.release_date }}</p>
+
+    <!-- List Proudction -->
+    <ul class="production-list">
+      <li *ngFor="let company of movie.productions">{{ company.name }}</li>
+    </ul>
+
+    <!-- Lesser Information Stats -->
     <p class="lesser-info">
       <span
         >Original Language:
@@ -18,10 +29,12 @@
       <span>{{ movie.status }}</span>
     </p>
 
+    <!-- Movie Rating -->
     <app-star-rating [rating]="movie.vote_average"></app-star-rating>
+    <span class="vote-count">{{ movie.vote_count }} Votes</span>
 
     <!-- List genres -->
-    <ul>
+    <ul class="genre-list">
       <li *ngFor="let genre of movie.genres">{{ genre.name }}</li>
     </ul>
 

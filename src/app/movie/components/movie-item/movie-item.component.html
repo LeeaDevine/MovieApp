@@ -1,0 +1,11 @@
+<mat-card class="movie-card">
+  <img
+    mat-card-image
+    [src]="getPosterImageUrl(movie.poster_path)"
+    alt="{{ movie.title }} Poster"
+  />
+  <div class="movie-info">
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+    <app-star-rating [rating]="movie.vote_average"></app-star-rating>
+  </div>
+</mat-card>

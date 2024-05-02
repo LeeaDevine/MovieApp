@@ -46,6 +46,11 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getPosterImageUrl(posterPath: string): string {
-    return this.movieService.getPosterImageUrl(posterPath);
+    if (this.movie!.poster_path) {
+      return this.movieService.getPosterImageUrl(posterPath);
+    } else {
+      // Return Filler Poser [poster_path not available.]
+      return '/assets/na-poster.png';
+    }
   }
 }

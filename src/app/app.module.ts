@@ -26,6 +26,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 import { AccountComponent } from './account/components/account/account.component';
 import { StarRatingComponent } from './shared/components/star-rating/star-rating.component';
+import { MovieItemComponent } from './movie/components/movie-item/movie-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { StarRatingComponent } from './shared/components/star-rating/star-rating
     RegisterComponent,
     AccountComponent,
     StarRatingComponent,
+    MovieItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,43 @@
   </button>
 </form>
 
+<!-- Display message to provide user feedback -->
+<div *ngIf="noResultsMessage" class="no-results">
+  <p>{{ noResultsMessage }}</p>
+</div>
+
+<!-- Search Movies results -->
+<div class="movies-container" *ngIf="movies.length > 0">
+  <div class="movies-row">
+    <!-- could have movie item component? -->
+    <a
+      *ngFor="let movie of movies"
+      [routerLink]="['/movie-details', movie.id]"
+      class="movie-card-link"
+    >
+      <app-movie-item [movie]="movie"></app-movie-item>
+    </a>
+  </div>
+  <!-- Page controller [changePage()] -->
+  <div class="page-controller">
+    <button
+      mat-button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      mat-button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
+</div>
+
 <!-- movie-list component -->
 <!-- List the trending | upcoming movies -->
 <app-movie-list></app-movie-list>

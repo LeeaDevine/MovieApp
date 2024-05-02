@@ -10,15 +10,7 @@
       [routerLink]="['/movie-details', movie.id]"
       class="movie-card-link"
     >
-      <mat-card class="movie-card">
-        <img
-          mat-card-image
-          [src]="getPosterImageUrl(movie.poster_path)"
-          alt="{{ movie.title }} Poster"
-        />
-        <mat-card-title>{{ movie.title }}</mat-card-title>
-        <app-star-rating [rating]="movie.vote_average"></app-star-rating>
-      </mat-card>
+      <app-movie-item [movie]="movie"></app-movie-item>
     </a>
   </div>
 </div>
@@ -35,15 +27,7 @@
       [routerLink]="['/movie-details', movie.id]"
       class="movie-card-link"
     >
-      <mat-card class="movie-card">
-        <img
-          mat-card-image
-          [src]="getPosterImageUrl(movie.poster_path)"
-          alt="{{ movie.title }} Poster"
-        />
-        <mat-card-title>{{ movie.title }}</mat-card-title>
-        <app-star-rating [rating]="movie.vote_average"></app-star-rating>
-      </mat-card>
+      <app-movie-item [movie]="movie"></app-movie-item>
     </a>
   </div>
 </div>

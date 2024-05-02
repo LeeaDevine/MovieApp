@@ -1,0 +1,27 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  margin-bottom: 0.4rem;
+
+  img[mat-card-image] {
+    width: 100%;
+    height: 300px; // Fixed height for all images
+    object-fit: inherit; // Ensure images cover the area without distortion
+  }
+}
+
+.movie-info {
+  padding: 0.5rem;
+}
+
+mat-card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+app-star-rating {
+  display: flex;
+  align-items: center;
+}
