@@ -15,9 +15,11 @@
     <p>Release Date: {{ movie.release_date }}</p>
 
     <!-- List Proudction -->
-    <ul class="production-list">
-      <li *ngFor="let company of movie.productions">{{ company.name }}</li>
-    </ul>
+    <!-- <ul class="production-list">
+      <li *ngFor="let company of movie.production_companies">
+        {{ company.name }}
+      </li>
+    </ul> -->
 
     <!-- Lesser Information Stats -->
     <p class="lesser-info">
@@ -40,12 +42,24 @@
 
     <!-- Overview of movie -->
     <div class="movie-desc">
-      <h4>Movie Description:</h4>
+      <div class="movie-heading">
+        <mat-icon color="primary">info_outline</mat-icon>
+        <h4>Movie Description:</h4>
+      </div>
       <p>{{ movie.overview }}</p>
     </div>
 
     <div class="subscription-list">
+      <div class="movie-heading">
+        <mat-icon color="primary">live_tv</mat-icon>
+        <h4>Available Subscriptions:</h4>
+      </div>
+
       <!-- Place subscription list here -->
     </div>
   </div>
 </div>
+
+<hr class="divider" />
+
+<app-movie-review [movieId]="movie!.id"></app-movie-review>

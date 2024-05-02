@@ -9,7 +9,7 @@ import { Movie } from '../../models/movie.model';
   styleUrl: './movie-details.component.scss',
 })
 export class MovieDetailsComponent implements OnInit {
-  movie: Movie | null = null;
+  movie!: Movie;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,21 +22,24 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      console.log(id);
 
-      this.loadMovieDetails(id);
+      // Check for id
+      if (id) {
+        this.loadMovieDetails(id);
+      } else {
+        console.error('Invalid ID - something went wrong');
+      }
     });
   }
 
   /**
-   * @description Load movies from id
+   * @description Get Movie Details [movie id]
    * @param id
    */
   loadMovieDetails(id: number): void {
     this.movieService.getMovieDetails(id).subscribe({
       next: (response: Movie) => {
-        console.log(response);
-
+        console.log('API response:', response);
         this.movie = response;
       },
       error: (error) => {

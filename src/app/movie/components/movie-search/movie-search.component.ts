@@ -66,6 +66,7 @@ export class MovieSearchComponent {
         },
       });
     }
+    // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 
   changePage(page: number) {

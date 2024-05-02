@@ -1,0 +1,21 @@
+<!-- movie-review.component.html -->
+<div class="review-container">
+  <h2>Movie Reviews</h2>
+  <ng-container *ngIf="reviews$ | async as reviews">
+    <ng-container *ngIf="reviews.results.length; else noReviews">
+      <mat-card *ngFor="let review of reviews.results" class="review-item">
+        <div class="review-heading-container">
+          <mat-card-title>{{ review.author }}</mat-card-title>
+          <div class="review-rating">
+            {{ review.author_details?.rating || "No rating" }}
+          </div>
+        </div>
+        <mat-card-subtitle>{{
+          review.created_at | date : "medium"
+        }}</mat-card-subtitle>
+        <mat-card-content>{{ review.content }}</mat-card-content>
+      </mat-card>
+    </ng-container>
+  </ng-container>
+  <ng-template #noReviews>No reviews yet.</ng-template>
+</div>

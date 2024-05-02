@@ -49,6 +49,11 @@ export class MovieService {
     return this.http.get<Movie>(url);
   }
 
+  getMovieReviews(id: number): Observable<any> {
+    const url = `${this.apiURL}/movie/${id}/reviews?api_key=${this.apiKey}`;
+    return this.http.get<any>(url).pipe(map((response) => response));
+  }
+
   //Get Poster Image
   getPosterImageUrl(posterPath: string): string {
     const imageUrlPrefix = 'https://image.tmdb.org/t/p/w500';

@@ -11,7 +11,7 @@ export interface Movie {
   poster_path: string;
   overview: string;
   genres: Genre[];
-  productions: Production[];
+  production_companies: Production[];
   runtime: number;
   original_language: string;
   release_date: string;
@@ -29,3 +29,6 @@ export interface Production {
   id: string;
   name: string;
 }
+
+// Movie Reviews --
+export interface MovieReviews {}
