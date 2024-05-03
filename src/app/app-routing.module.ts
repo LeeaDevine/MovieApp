@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'account',
     component: AccountComponent,
     canActivate: [AuthGuardService],
-  }, // add route guard
+  },
 
   // Wildcard - 404 error
   { path: '**', component: NotFoundComponent },

@@ -3,7 +3,12 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Movie, MovieSearchResults } from '../models/movie.model';
+import {
+  Movie,
+  MovieReview,
+  MovieSearchResults,
+  WatchProviders,
+} from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root',
@@ -49,9 +54,16 @@ export class MovieService {
     return this.http.get<Movie>(url);
   }
 
-  getMovieReviews(id: number): Observable<any> {
+  getMovieReviews(id: number): Observable<MovieReview[]> {
     const url = `${this.apiURL}/movie/${id}/reviews?api_key=${this.apiKey}`;
-    return this.http.get<any>(url).pipe(map((response) => response));
+    return this.http
+      .get<{ results: MovieReview[] }>(url)
+      .pipe(map((response) => response.results));
+  }
+
+  getMovieWatchProviders(id: number): Observable<WatchProviders> {
+    const url = `${this.apiURL}/movie/${id}/watch/providers?api_key=${this.apiKey}`;
+    return this.http.get<WatchProviders>(url).pipe(map((response) => response));
   }
 
   //Get Poster Image

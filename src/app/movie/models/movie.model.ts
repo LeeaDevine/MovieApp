@@ -31,4 +31,28 @@ export interface Production {
 }
 
 // Movie Reviews --
-export interface MovieReviews {}
+export interface MovieReview {
+  id: string;
+  author: string;
+  content: string;
+  created_at: string; //Date convertion
+  author_details: {
+    name: string;
+    avatar_path?: string;
+    rating: number;
+  };
+}
+
+export interface WatchProviders {
+  id: number;
+  results: {
+    [countryCode: string]: {
+      link: string;
+      flatrate?: Array<{
+        provider_name: string;
+        provider_id: number;
+        logo_path: string;
+      }>;
+    };
+  };
+}

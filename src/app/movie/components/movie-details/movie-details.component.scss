@@ -44,19 +44,17 @@
       max-width: 100%;
     }
 
-    .movie-heading {
-      display: flex;
-      align-items: flex-start;
-      text-align: center;
-      h4 {
-        font-size: 1.2rem;
-        font-weight: 500;
-        margin-bottom: 0.6rem;
-      }
+    .lesser-info {
+      margin-top: 0.2rem;
+      opacity: 0.6;
 
-      mat-icon {
-        margin-right: 6px;
+      span {
+        margin-right: 0.2rem;
       }
+    }
+
+    .upper {
+      text-transform: uppercase;
     }
   }
 
@@ -73,15 +71,42 @@
   }
 }
 
-.lesser-info {
-  margin-top: 0.2rem;
-  opacity: 0.6;
+// Headings
+.movie-heading {
+  display: flex;
+  align-items: flex-start;
+  text-align: center;
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
 
-  span {
-    margin-right: 0.2rem;
+  mat-icon {
+    margin-right: 6px;
   }
 }
 
-.upper {
-  text-transform: uppercase;
+// watch providers
+.watch-providers {
+  margin-top: 1rem;
+  display: flex;
+  gap: 50px;
+
+  .provider_details {
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      border-radius: 10%;
+      width: 50px;
+      height: auto;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
 }

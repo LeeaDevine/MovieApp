@@ -32,6 +32,16 @@
           {{ getPasswordErrorMessage() }}
         </mat-error>
       </mat-form-field>
+      <!-- <div class="subscriptions-container" *ngFor="let service of availableSubscriptions">
+        <label>
+          <input
+            type="checkbox"
+            [value]="service"
+            [(ngModel)]="selectedSubscriptions"
+          />
+          {{ service }}
+        </label>
+      </div> -->
       <button
         mat-raised-button
         color="primary"

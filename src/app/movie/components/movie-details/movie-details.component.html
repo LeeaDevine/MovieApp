@@ -1,3 +1,5 @@
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
 <div *ngIf="movie" class="row">
   <!-- Poster -->
   <div class="movie-details-image">
@@ -48,18 +50,33 @@
       </div>
       <p>{{ movie.overview }}</p>
     </div>
-
-    <div class="subscription-list">
-      <div class="movie-heading">
-        <mat-icon color="primary">live_tv</mat-icon>
-        <h4>Available Subscriptions:</h4>
-      </div>
-
-      <!-- Place subscription list here -->
-    </div>
   </div>
 </div>
 
 <hr class="divider" />
 
-<app-movie-review [movieId]="movie!.id"></app-movie-review>
+<!-- Watch Providers -->
+<!-- Movie Details Component Template -->
+<div *ngIf="watchProviders?.length > 0; else noProviders">
+  <div class="movie-heading">
+    <mat-icon color="primary">tv_live</mat-icon>
+    <h4>Where to Watch:</h4>
+  </div>
+  <div class="watch-providers">
+    <div class="provider_details" *ngFor="let provider of watchProviders">
+      <img
+        [src]="getProviderLogoUrl(provider.logo_path)"
+        [alt]="provider.provider_name"
+      />
+      <p>{{ provider.provider_name }}</p>
+    </div>
+  </div>
+</div>
+<ng-template #noProviders>
+  <p>No streaming options are currently available in GB.</p>
+</ng-template>
+
+<hr class="divider" />
+
+<!-- Movie Review component -->
+<app-movie-review *ngIf="movie" [movieId]="movie.id"></app-movie-review>

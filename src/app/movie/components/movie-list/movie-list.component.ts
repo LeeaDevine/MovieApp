@@ -21,7 +21,7 @@ export class MovieListComponent {
   loadTrendingMovies(): void {
     this.movieService.getTrendingMovies().subscribe({
       next: (movies) => {
-        console.log(movies);
+        // console.log(movies);
 
         this.trending = movies;
       },

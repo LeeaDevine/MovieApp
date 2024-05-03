@@ -10,6 +10,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class RegisterComponent {
   // Globals
+  loading = false;
   errorMessage!: string;
 
   constructor(
@@ -21,8 +22,6 @@ export class RegisterComponent {
       this.errorMessage = message;
     });
   }
-
-  loading = false;
 
   // Register Form Builder
   registerForm = this.formBuilder.group({
@@ -37,7 +36,14 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.loading = true;
       const { email, password } = this.registerForm.value;
-      this.authService.register(email!, password!);
+      this.authService
+        .register(email!, password!)
+        .then(() => {
+          console.log('Registeration and subscriptions setup complete');
+        })
+        .catch((error) => {
+          console.error('Register failed', error);
+        });
       this.loading = false;
     } else {
       this.errorHandler.changeErrorMessage('Form is not valid');

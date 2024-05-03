@@ -14,7 +14,9 @@ export class MovieSearchComponent {
   movies: Movie[] = [];
   currentPage: number = 1;
   totalPages: number = 0;
-  noResultsMessage: string = '';
+
+  // error messages
+  errorMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +27,11 @@ export class MovieSearchComponent {
     });
   }
 
+  // Loading spinner
+  loading = false;
+
   onSubmit() {
+    this.loading = true;
     // Extract the movie title from the form control
     const movieTitle = this.searchForm.get('title')?.value;
 
@@ -37,7 +43,8 @@ export class MovieSearchComponent {
     }
 
     // reset error message
-    this.noResultsMessage = '';
+    this.errorMessage = '';
+    this.loading = false;
   }
 
   /**
@@ -56,13 +63,15 @@ export class MovieSearchComponent {
           this.currentPage = data.page;
 
           if (this.movies.length === 0) {
-            this.noResultsMessage =
+            this.errorMessage =
               'No results found for your search. Please try a different input.';
           }
         },
         error: (error) => {
           // TODO: Handle any errors that occur during the search
           console.error('Error fetching the results', error);
+          this.errorMessage =
+            'An error occurred while searching. Please try again.';
         },
       });
     }
@@ -70,6 +79,7 @@ export class MovieSearchComponent {
   }
 
   changePage(page: number) {
+    this.loading = true;
     const movieTitle = this.searchForm.get('title')?.value;
     // Check title, and page status
     if (
@@ -82,5 +92,13 @@ export class MovieSearchComponent {
       this.currentPage = page;
       this.searchMovies(movieTitle, page);
     }
+    this.loading = false;
+  }
+
+  getInputRequiredError() {
+    if (this.searchForm.controls['title'].hasError('required')) {
+      return 'Movie title is required.';
+    }
+    return '';
   }
 }

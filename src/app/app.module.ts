@@ -18,17 +18,17 @@ import { MatInputModule } from '@angular/material/input';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
 import { AccountComponent } from './account/components/account/account.component';
 import { StarRatingComponent } from './shared/components/star-rating/star-rating.component';
 import { MovieItemComponent } from './movie/components/movie-item/movie-item.component';
 import { MovieReviewComponent } from './movie/components/movie-review/movie-review.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +44,13 @@ import { MovieReviewComponent } from './movie/components/movie-review/movie-revi
     StarRatingComponent,
     MovieItemComponent,
     MovieReviewComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
@@ -60,7 +62,6 @@ import { MovieReviewComponent } from './movie/components/movie-review/movie-revi
     MatCardModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

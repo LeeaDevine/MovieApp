@@ -10,8 +10,8 @@
       formControlName="title"
       placeholder="Movie Title"
     />
-    <mat-error *ngIf="searchForm.hasError('required')">
-      Movie title is required.
+    <mat-error *ngIf="searchForm.touched && searchForm.get('title')?.errors">
+      {{ getInputRequiredError() }}
     </mat-error>
   </mat-form-field>
 
@@ -26,9 +26,12 @@
   </button>
 </form>
 
+<!-- Loading spinner -->
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
 <!-- Display message to provide user feedback -->
-<div *ngIf="noResultsMessage" class="no-results">
-  <p>{{ noResultsMessage }}</p>
+<div *ngIf="errorMessage" class="no-results">
+  <p>{{ errorMessage }}</p>
 </div>
 
 <!-- Search Movies results -->
@@ -62,6 +65,8 @@
     </button>
   </div>
 </div>
+
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
 
 <!-- movie-list component -->
 <!-- List the trending | upcoming movies -->

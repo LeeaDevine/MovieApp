@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../../shared/service/error-handler.service';
+import { SubscriptionsService } from '../../account/services/subscriptions.service';
 
 @Injectable({
   providedIn: 'root',
