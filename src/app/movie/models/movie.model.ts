@@ -43,18 +43,23 @@ export interface MovieReview {
   };
 }
 
+export interface WatchProvider {
+  provider_name: string;
+  provider_id: number;
+  logo_path: string;
+}
+
+export interface CountryProviders {
+  flatrate?: WatchProvider[]; // Array of providers
+}
+
+export interface WatchProvidersResults {
+  [countryCode: string]: CountryProviders;
+}
+
 export interface WatchProviders {
   id: number;
-  results: {
-    [countryCode: string]: {
-      link: string;
-      flatrate?: Array<{
-        provider_name: string;
-        provider_id: number;
-        logo_path: string;
-      }>;
-    };
-  };
+  results: WatchProvidersResults;
 }
 
 // User subscriptions

@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import {
+  Movie,
+  UserSubscriptions,
+  WatchProvider,
+  WatchProviders,
+} from '../../models/movie.model';
+import { SubscriptionsService } from '../../../account/services/subscriptions.service';
+import { AuthService } from '../../../auth/service/auth.service';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-movie-details',
@@ -10,12 +18,24 @@ import { Movie } from '../../models/movie.model';
 })
 export class MovieDetailsComponent implements OnInit {
   movie!: Movie;
-  watchProviders: any | null;
+  watchProviders: WatchProvider[] | null = null;
+  userSubscriptions!: UserSubscriptions | null;
   loading = false;
+
+  // mapping
+  providerKeyMapping: { [key: string]: keyof UserSubscriptions } = {
+    Netflix: 'netflix',
+    'Sky Go': 'skyGo',
+    'Now TV': 'nowTV',
+    'Amazon Video': 'amazonVideo',
+    'Disney Plus': 'disneyPlus',
+  };
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private subscriptionService: SubscriptionsService,
+    private authService: AuthService
   ) {}
 
   /**
@@ -35,6 +55,22 @@ export class MovieDetailsComponent implements OnInit {
       }
     });
     this.loading = false;
+
+    // get userid -> user Subscriptions
+    this.authService
+      .getCurrentUserId()
+      .pipe(
+        switchMap((userId) => {
+          if (userId) {
+            return this.subscriptionService.getSubscriptions(userId);
+          } else {
+            return of(null); //handle case when userid is null
+          }
+        })
+      )
+      .subscribe((subscriptions) => {
+        this.userSubscriptions = subscriptions;
+      });
   }
 
   /**
@@ -59,7 +95,7 @@ export class MovieDetailsComponent implements OnInit {
   loadWatchProviders(id: number): void {
     this.movieService.getMovieWatchProviders(id).subscribe({
       next: (providers) => {
-        this.watchProviders = providers.results?.['GB']?.flatrate;
+        this.watchProviders = providers.results['GB']?.flatrate || [];
         console.log('Flatrate providers for GB:', this.watchProviders);
       },
       error: (error) => console.error('Error fetching watch providers', error),
@@ -77,5 +113,16 @@ export class MovieDetailsComponent implements OnInit {
       // Return Filler Poser [poster_path not available.]
       return '/assets/na-poster.png';
     }
+  }
+
+  /**
+   * @description using map get provider_name associated with available User subscriptions
+   * @param providerName
+   * @returns
+   */
+  getSubscriptionStatus(providerName: string): boolean {
+    // Normalize or map providerName to the key used in userSubscriptions
+    const key = this.providerKeyMapping[providerName];
+    return this.userSubscriptions ? this.userSubscriptions[key] : false;
   }
 }

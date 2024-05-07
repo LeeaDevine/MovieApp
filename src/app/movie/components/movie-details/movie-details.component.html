@@ -57,7 +57,7 @@
 
 <!-- Watch Providers -->
 <!-- Movie Details Component Template -->
-<div *ngIf="watchProviders?.length > 0; else noProviders">
+<div *ngIf="watchProviders?.length; else noProviders">
   <div class="movie-heading">
     <mat-icon color="primary">tv_live</mat-icon>
     <h4>Where to Watch:</h4>
@@ -68,7 +68,9 @@
         [src]="getProviderLogoUrl(provider.logo_path)"
         [alt]="provider.provider_name"
       />
-      <p>{{ provider.provider_name }}</p>
+      <p [class.active]="getSubscriptionStatus(provider.provider_name)">
+        {{ provider.provider_name }}
+      </p>
     </div>
   </div>
 </div>

@@ -108,5 +108,15 @@
     p {
       font-size: 0.8rem;
     }
+
+    p.active {
+      color: rgb(10, 83, 8);
+      font-weight: 500;
+      font-size: 0.85rem;
+      border: 2px solid green;
+      background-color: #c7dbc8;
+      padding: 10px;
+      border-radius: 4px;
+    }
   }
 }

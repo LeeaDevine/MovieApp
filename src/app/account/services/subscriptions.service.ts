@@ -37,7 +37,9 @@ export class SubscriptionsService {
    * @param userId
    * @returns user scriptions or null
    */
-  getSubscriptions(userId: string | undefined | null): Observable<any> {
+  getSubscriptions(
+    userId: string | undefined | null
+  ): Observable<UserSubscriptions | null> {
     if (userId) {
       return this.http.get<UserSubscriptions>(
         'https://movieapp-88c1e-default-rtdb.europe-west1.firebasedatabase.app/users/' +
