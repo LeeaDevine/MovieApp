@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -60,6 +62,8 @@ import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loa
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
   ],

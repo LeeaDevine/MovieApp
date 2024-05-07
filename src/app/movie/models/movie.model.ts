@@ -56,3 +56,12 @@ export interface WatchProviders {
     };
   };
 }
+
+// User subscriptions
+export interface UserSubscriptions {
+  netflix: boolean;
+  skyGo: boolean;
+  nowTV: boolean;
+  amazonVideo: boolean;
+  disneyPlus: boolean;
+}

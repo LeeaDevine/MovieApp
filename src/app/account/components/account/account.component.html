@@ -1,8 +1,28 @@
-<div>
-  <h2>Account Name</h2>
-
-  <!-- Some kind of form to update, delete, add -->
-  <div class="subscription_list">
-    <p>i am list</p>
+<div class="subscription-management">
+  <div class="subscription-headings">
+    <h2>Manage Your Subscriptions</h2>
+    <p>Check the boxes for each service you use.</p>
   </div>
+
+  <!-- Card display - current subscription list [user] -->
+  <mat-card>
+    <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+      <!-- Checkbox for each option -->
+      <mat-checkbox formControlName="netflix">Netflix</mat-checkbox>
+      <mat-checkbox formControlName="skyGo">Sky Go</mat-checkbox>
+      <mat-checkbox formControlName="nowTV">Now TV</mat-checkbox>
+      <mat-checkbox formControlName="amazonVideo">Amazon Video</mat-checkbox>
+      <mat-checkbox formControlName="disneyPlus">Disney Plus</mat-checkbox>
+
+      <!-- Save changes made -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!subscriptionForm.dirty"
+      >
+        Save Changes
+      </button>
+    </form>
+  </mat-card>
 </div>

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserSubscriptions } from '../../movie/models/movie.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,10 @@ export class SubscriptionsService {
    * @param userId
    * @param subscriptions
    */
-  storeSubscriptions(userId: string | undefined, subscriptions: string[]) {
+  storeSubscriptions(
+    userId: string | undefined,
+    subscriptions: UserSubscriptions
+  ) {
     this.http
       .put(
         'https://movieapp-88c1e-default-rtdb.europe-west1.firebasedatabase.app/users/' +
@@ -27,11 +32,21 @@ export class SubscriptionsService {
       });
   }
 
-  getSubscriptions(userId: string | undefined) {
-    this.http.get(
-      'https://movieapp-88c1e-default-rtdb.europe-west1.firebasedatabase.app/users/' +
-        userId +
-        '/subscriptions.json'
-    );
+  /**
+   * @description fetch userid -> user subscriptions from firebase
+   * @param userId
+   * @returns user scriptions or null
+   */
+  getSubscriptions(userId: string | undefined | null): Observable<any> {
+    if (userId) {
+      return this.http.get<UserSubscriptions>(
+        'https://movieapp-88c1e-default-rtdb.europe-west1.firebasedatabase.app/users/' +
+          userId +
+          '/subscriptions.json'
+      );
+    } else {
+      console.error('User id is required.');
+      return of(null);
+    }
   }
 }
