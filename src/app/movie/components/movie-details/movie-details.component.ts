@@ -5,7 +5,6 @@ import {
   Movie,
   UserSubscriptions,
   WatchProvider,
-  WatchProviders,
 } from '../../models/movie.model';
 import { SubscriptionsService } from '../../../account/services/subscriptions.service';
 import { AuthService } from '../../../auth/service/auth.service';
@@ -39,7 +38,7 @@ export class MovieDetailsComponent implements OnInit {
   ) {}
 
   /**
-   * @description On initialise
+   * @description on intialise - load related content.
    */
   ngOnInit(): void {
     this.loading = true;
@@ -102,15 +101,25 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * @description get watch provider logo for services
+   * @param path
+   * @returns
+   */
   getProviderLogoUrl(path: string): string {
     return `https://image.tmdb.org/t/p/w500${path}`;
   }
 
+  /**
+   * @description Get poster url which will show poster for each movie
+   * @param posterPath
+   * @returns
+   */
   getPosterImageUrl(posterPath: string): string {
     if (this.movie!.poster_path) {
       return this.movieService.getPosterImageUrl(posterPath);
     } else {
-      // Return Filler Poser [poster_path not available.]
+      // Return Filler Poster [poster_path not available.]
       return '/assets/na-poster.png';
     }
   }
